@@ -1,2 +1,4 @@
-include ':app'
 rootProject.name = "Metalla"
+include ':app'
+include ':domain'
+include ':data'
