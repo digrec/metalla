@@ -5,8 +5,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
 import com.digrec.metalla.databinding.FragmentDashboardBinding
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 /**
  * Created by Dejan Igrec
@@ -15,15 +15,13 @@ class DashboardFragment : Fragment() {
 
     private var _binding: FragmentDashboardBinding? = null
     private val binding get() = _binding!!
-    private lateinit var dashboardViewModel: DashboardViewModel
+    private val dashboardViewModel: DashboardViewModel by viewModel()
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        dashboardViewModel = ViewModelProvider(this).get(DashboardViewModel::class.java)
-
         _binding = FragmentDashboardBinding.inflate(inflater, container, false)
 
         dashboardViewModel.text.observe(viewLifecycleOwner) {
