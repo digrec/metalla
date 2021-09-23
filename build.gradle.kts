@@ -16,7 +16,7 @@ buildscript {
     val vLifecycle by extra("2.3.1")
     val vMaterial by extra("1.4.0")
     val vNavigation by extra("2.3.5")
-    val vTimber by extra("4.7.1")
+    val vTimber by extra("5.0.1")
 
     repositories {
         google()
