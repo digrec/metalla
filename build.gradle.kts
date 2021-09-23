@@ -12,7 +12,7 @@ buildscript {
     val vJunit by extra("4.13.2")
     val vJunitExt by extra("1.1.3")
     val vKoin by extra("3.1.2")
-    val vKotlin by extra("1.5.20")
+    val vKotlin by extra("1.5.31")
     val vLifecycle by extra("2.3.1")
     val vMaterial by extra("1.4.0")
     val vNavigation by extra("2.3.5")
