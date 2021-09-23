@@ -1,6 +1,6 @@
 package com.digrec.metalla.domain.model
 
-import java.util.*
+import java.util.Date
 
 
 /**
