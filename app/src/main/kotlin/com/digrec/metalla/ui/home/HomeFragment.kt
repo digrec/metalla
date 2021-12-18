@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import com.digrec.metalla.databinding.FragmentHomeBinding
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
+
 /**
  * Created by Dejan Igrec
  */

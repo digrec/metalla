@@ -8,6 +8,7 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.digrec.metalla.databinding.ActivityMainBinding
 
+
 /**
  * Created by Dejan Igrec
  */
