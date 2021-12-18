@@ -25,8 +25,8 @@ class SettingsFragment : Fragment() {
     ): View? {
         _binding = FragmentSettingsBinding.inflate(inflater, container, false)
 
-        settingsViewModel.text.observe(viewLifecycleOwner) {
-            binding.textSettings.text = it
+        settingsViewModel.appVersion.observe(viewLifecycleOwner) {
+            binding.textAppVersion.text = it
         }
 
         return binding.root

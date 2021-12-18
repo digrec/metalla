@@ -3,6 +3,7 @@ package com.digrec.metalla.ui.settings
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.digrec.metalla.BuildConfig
 
 
 /**
@@ -10,8 +11,9 @@ import androidx.lifecycle.ViewModel
  */
 class SettingsViewModel : ViewModel() {
 
-    private val _text = MutableLiveData<String>().apply {
-        value = "Settings Fragment"
+    private val _appVersion = MutableLiveData<String>().apply {
+        value = "v${BuildConfig.VERSION_NAME}+${BuildConfig.VERSION_CODE}"
     }
-    val text: LiveData<String> = _text
+
+    val appVersion: LiveData<String> = _appVersion
 }
