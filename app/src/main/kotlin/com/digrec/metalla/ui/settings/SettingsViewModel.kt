@@ -1,16 +1,17 @@
-package com.digrec.metalla.ui.notifications
+package com.digrec.metalla.ui.settings
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
+
 /**
  * Created by Dejan Igrec
  */
-class NotificationsViewModel : ViewModel() {
+class SettingsViewModel : ViewModel() {
 
     private val _text = MutableLiveData<String>().apply {
-        value = "This is notifications Fragment"
+        value = "Settings Fragment"
     }
     val text: LiveData<String> = _text
 }

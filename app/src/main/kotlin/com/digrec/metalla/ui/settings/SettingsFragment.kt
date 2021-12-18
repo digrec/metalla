@@ -1,31 +1,32 @@
-package com.digrec.metalla.ui.notifications
+package com.digrec.metalla.ui.settings
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.digrec.metalla.databinding.FragmentNotificationsBinding
+import com.digrec.metalla.databinding.FragmentSettingsBinding
 import org.koin.androidx.viewmodel.ext.android.viewModel
+
 
 /**
  * Created by Dejan Igrec
  */
-class NotificationsFragment : Fragment() {
+class SettingsFragment : Fragment() {
 
-    private var _binding: FragmentNotificationsBinding? = null
+    private var _binding: FragmentSettingsBinding? = null
     private val binding get() = _binding!!
-    private val notificationsViewModel: NotificationsViewModel by viewModel()
+    private val settingsViewModel: SettingsViewModel by viewModel()
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = FragmentNotificationsBinding.inflate(inflater, container, false)
+        _binding = FragmentSettingsBinding.inflate(inflater, container, false)
 
-        notificationsViewModel.text.observe(viewLifecycleOwner) {
-            binding.textNotifications.text = it
+        settingsViewModel.text.observe(viewLifecycleOwner) {
+            binding.textSettings.text = it
         }
 
         return binding.root
