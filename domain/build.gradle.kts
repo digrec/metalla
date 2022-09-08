@@ -1,5 +1,5 @@
 plugins {
-    id("kotlin")
+    id("org.jetbrains.kotlin.jvm")
 }
 
 sourceSets {
@@ -17,9 +17,6 @@ tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
     }
 }
 
-val vKotlin: String by rootProject.extra
-
 dependencies {
-    // Kotlin
-    implementation("org.jetbrains.kotlin:kotlin-stdlib:$vKotlin")
+
 }

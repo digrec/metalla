@@ -1,6 +1,6 @@
 plugins {
     id("com.android.application")
-    id("kotlin-android")
+    id("org.jetbrains.kotlin.android")
 }
 
 val vCompileSdk: Int by rootProject.extra
@@ -55,7 +55,6 @@ val vEspresso: String by rootProject.extra
 val vJunit: String by rootProject.extra
 val vJunitExt: String by rootProject.extra
 val vKoin: String by rootProject.extra
-val vKotlin: String by rootProject.extra
 val vLifecycle: String by rootProject.extra
 val vMaterial: String by rootProject.extra
 val vNavigation: String by rootProject.extra
@@ -64,9 +63,6 @@ val vTimber: String by rootProject.extra
 dependencies {
     implementation(project(":domain"))
     implementation(project(":data"))
-
-    // Kotlin
-    implementation("org.jetbrains.kotlin:kotlin-stdlib:$vKotlin")
 
     // AndroidX
     implementation("androidx.core:core-ktx:$vAndroidX")
