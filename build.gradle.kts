@@ -1,8 +1,8 @@
 buildscript {
     // common SDK versions
-    val vCompileSdk by extra(31)
+    val vCompileSdk by extra(32)
     val vMinSdk by extra(23)
-    val vTargetSdk by extra(31)
+    val vTargetSdk by extra(32)
 
     // common dependency versions
     val vAndroidX by extra("1.7.0")
