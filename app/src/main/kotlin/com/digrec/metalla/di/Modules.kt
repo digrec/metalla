@@ -3,7 +3,7 @@ package com.digrec.metalla.di
 import com.digrec.metalla.ui.dashboard.DashboardViewModel
 import com.digrec.metalla.ui.home.HomeViewModel
 import com.digrec.metalla.ui.settings.SettingsViewModel
-import org.koin.androidx.viewmodel.dsl.viewModel
+import org.koin.core.module.dsl.viewModelOf
 import org.koin.dsl.module
 
 
@@ -15,8 +15,8 @@ import org.koin.dsl.module
 object Modules {
 
     val viewModelModule = module {
-        viewModel { HomeViewModel() }
-        viewModel { DashboardViewModel() }
-        viewModel { SettingsViewModel() }
+        viewModelOf(::HomeViewModel)
+        viewModelOf(::DashboardViewModel)
+        viewModelOf(::SettingsViewModel)
     }
 }

@@ -1,19 +1,17 @@
-plugins {
-    id("org.jetbrains.kotlin.jvm")
-}
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
-sourceSets {
-    main { java.srcDir("src/main/kotlin") }
+plugins {
+    alias(libs.plugins.kotlin.jvm)
 }
 
 java {
-    sourceCompatibility = JavaVersion.VERSION_1_8
-    targetCompatibility = JavaVersion.VERSION_1_8
+    sourceCompatibility = JavaVersion.VERSION_17
+    targetCompatibility = JavaVersion.VERSION_17
 }
 
-tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
-    kotlinOptions {
-        jvmTarget = JavaVersion.VERSION_1_8.toString()
+kotlin {
+    compilerOptions {
+        jvmTarget.set(JvmTarget.JVM_17)
     }
 }
 
