@@ -1,32 +1,32 @@
-package com.digrec.metalla.ui.dashboard
+package com.digrec.metalla.features.settings
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.digrec.metalla.databinding.FragmentDashboardBinding
+import com.digrec.metalla.databinding.FragmentSettingsBinding
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
 /**
  * Created by Dejan Igrec
  */
-class DashboardFragment : Fragment() {
+class SettingsFragment : Fragment() {
 
-    private var _binding: FragmentDashboardBinding? = null
+    private var _binding: FragmentSettingsBinding? = null
     private val binding get() = _binding!!
-    private val dashboardViewModel: DashboardViewModel by viewModel()
+    private val settingsViewModel: SettingsViewModel by viewModel()
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = FragmentDashboardBinding.inflate(inflater, container, false)
+        _binding = FragmentSettingsBinding.inflate(inflater, container, false)
 
-        dashboardViewModel.text.observe(viewLifecycleOwner) {
-            binding.textDashboard.text = it
+        settingsViewModel.appVersion.observe(viewLifecycleOwner) {
+            binding.textAppVersion.text = it
         }
 
         return binding.root

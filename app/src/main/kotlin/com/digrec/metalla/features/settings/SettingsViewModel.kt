@@ -1,4 +1,4 @@
-package com.digrec.metalla.ui.settings
+package com.digrec.metalla.features.settings
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

@@ -22,9 +22,12 @@ Metalla is a modern Android application for tracking precious metals portfolios.
 
 ## 📂 Project Structure
 
-- `:app` - UI layer, DI setup, and Application class.
-- `:data` - Future implementation of repositories and data sources (Local/Remote).
-- `:domain` - Business logic models and logging (Will contain Use Cases and Repository interfaces).
+Metalla utilizes a consolidated single-module (`:app`) approach that strictly enforces layer separation through a package-by-feature structure:
+
+- `ui/`: Top-level app scaffolding (e.g., MainActivity, future Compose root, global navigation).
+- `features/`: Package-by-feature UI and feature-specific business logic (e.g., Dashboard, Settings).
+- `core/`: Shared components (database, repository interfaces, shared domain/data logic, shared theme/design system).
+- `di/`: Composition Root (Koin modules wiring the entire app together).
 
 ## 🛠 Getting Started
 

@@ -1,8 +1,8 @@
 package com.digrec.metalla.di
 
-import com.digrec.metalla.ui.dashboard.DashboardViewModel
-import com.digrec.metalla.ui.home.HomeViewModel
-import com.digrec.metalla.ui.settings.SettingsViewModel
+import com.digrec.metalla.features.dashboard.DashboardViewModel
+import com.digrec.metalla.features.home.HomeViewModel
+import com.digrec.metalla.features.settings.SettingsViewModel
 import org.koin.core.module.dsl.viewModelOf
 import org.koin.dsl.module
 

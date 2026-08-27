@@ -1,4 +1,4 @@
-package com.digrec.metalla.ui.home
+package com.digrec.metalla.features.dashboard
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -8,10 +8,10 @@ import androidx.lifecycle.ViewModel
 /**
  * Created by Dejan Igrec
  */
-class HomeViewModel : ViewModel() {
+class DashboardViewModel : ViewModel() {
 
     private val _text = MutableLiveData<String>().apply {
-        value = "Home Fragment"
+        value = "Dashboard Fragment"
     }
     val text: LiveData<String> = _text
 }

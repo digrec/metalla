@@ -1,5 +1,6 @@
-package com.digrec.metalla
+package com.digrec.metalla.ui
 
+import com.digrec.metalla.R
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController

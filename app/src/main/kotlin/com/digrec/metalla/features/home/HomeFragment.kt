@@ -1,4 +1,4 @@
-package com.digrec.metalla.ui.home
+package com.digrec.metalla.features.home
 
 import android.os.Bundle
 import android.view.LayoutInflater

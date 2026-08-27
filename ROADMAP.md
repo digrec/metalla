@@ -6,9 +6,10 @@ This roadmap outlines the planned evolution of Metalla, from technical debt redu
 
 - [ ] **Migrate to Jetpack Compose:** Replace ViewBinding and XML layouts with declarative Compose UI.
 - [ ] **State Flow Migration:** Fully transition from `LiveData` to `StateFlow` for state management.
-- [ ] **Architectural Consolidation:** Simplify project structure by merging `:data` and `:domain` into a single `:app` module using a package-by-feature structure.
+- [x] **Architectural Consolidation:** Simplify project structure by merging `:data` and `:domain` into a single `:app` module using a package-by-feature structure.
+    - `ui/`: Top-level app scaffolding (e.g. MainActivity, future Compose root, global navigation).
     - `di/`: Composition Root (Koin modules wiring the entire app).
-    - `core/`: Shared components (database, repository interfaces, shared domain/data logic).
+    - `core/`: Shared components (database, repository interfaces, shared domain/data logic, shared theme/design system).
     - `features/`: Package-by-feature UI and feature-specific logic.
 - [ ] **Version Catalog Optimization:** Ensure all dependencies are correctly managed in `libs.versions.toml`.
 - [ ] **KSP Support:** Use KSP for any future annotation processing (e.g., Room, Hilt).
