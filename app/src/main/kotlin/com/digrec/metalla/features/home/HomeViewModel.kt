@@ -1,12 +1,13 @@
 package com.digrec.metalla.features.home
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asStateFlow
 
 /** Created by Dejan Igrec */
 class HomeViewModel : ViewModel() {
 
-    private val _text = MutableLiveData<String>().apply { value = "Home Fragment" }
-    val text: LiveData<String> = _text
+    private val _text = MutableStateFlow("Home Fragment")
+    val text: StateFlow<String> = _text.asStateFlow()
 }

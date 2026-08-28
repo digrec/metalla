@@ -16,6 +16,7 @@ Metalla is a modern Android application for tracking precious metals portfolios.
 - **Architecture:** Clean Architecture with MVVM
 - **Dependency Injection:** [Koin](https://insert-koin.io/)
 - **Asynchronous Programming:** Coroutines & Flow
+- **State Management:** StateFlow
 - **Logging:** [Timber](https://github.com/JakeWharton/timber)
 - **UI:** ViewBinding (Migration to Jetpack Compose planned)
 - **Navigation:** Jetpack Navigation Component

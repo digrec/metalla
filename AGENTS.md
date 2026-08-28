@@ -16,7 +16,7 @@ This document provides context and rules for AI agents contributing to Metalla. 
 ## 📝 Coding Standards
 
 - **Kotlin First:** Use idiomatic Kotlin (e.g., `when`, `let`, `apply`, `extension functions`).
-- **Reactive Streams:** Prefer `Flow` over `LiveData` for new implementations.
+- **Reactive Streams:** Use `StateFlow` and `SharedFlow` for state management and event propagation.
 - **Naming:**
     - ViewModels: `[Feature]ViewModel`
     - Fragments: `[Feature]Fragment`

@@ -5,7 +5,7 @@ This roadmap outlines the planned evolution of Metalla, from technical debt redu
 ## 🛠 Technical Modernization (MAD)
 
 - [ ] **Migrate to Jetpack Compose:** Replace ViewBinding and XML layouts with declarative Compose UI.
-- [ ] **State Flow Migration:** Fully transition from `LiveData` to `StateFlow` for state management.
+- [x] **State Flow Migration:** Fully transition from `LiveData` to `StateFlow` for state management.
 - [x] **Architectural Consolidation:** Simplify project structure by merging `:data` and `:domain` into a single `:app` module using a package-by-feature structure.
     - `ui/`: Top-level app scaffolding (e.g. MainActivity, future Compose root, global navigation).
     - `di/`: Composition Root (Koin modules wiring the entire app).
