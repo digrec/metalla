@@ -6,7 +6,6 @@ import com.digrec.metalla.features.settings.SettingsViewModel
 import org.koin.core.module.dsl.viewModelOf
 import org.koin.dsl.module
 
-
 /**
  * All modules used in dependency injection.
  *

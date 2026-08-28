@@ -8,10 +8,7 @@ import org.koin.core.context.startKoin
 import org.koin.core.logger.Level
 import timber.log.Timber
 
-
-/**
- * Created by Dejan Igrec
- */
+/** Created by Dejan Igrec */
 class App : Application() {
 
     override fun onCreate() {
@@ -20,9 +17,7 @@ class App : Application() {
         startKoin {
             androidLogger(if (BuildConfig.DEBUG) Level.ERROR else Level.NONE)
             androidContext(this@App)
-            modules(
-                Modules.viewModelModule,
-            )
+            modules(Modules.viewModelModule)
         }
 
         Timber.plant(Timber.DebugTree())

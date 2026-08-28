@@ -8,26 +8,23 @@ import androidx.fragment.app.Fragment
 import com.digrec.metalla.databinding.FragmentHomeBinding
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-
-/**
- * Created by Dejan Igrec
- */
+/** Created by Dejan Igrec */
 class HomeFragment : Fragment() {
 
     private var _binding: FragmentHomeBinding? = null
-    private val binding get() = _binding!!
+    private val binding
+        get() = _binding!!
+
     private val homeViewModel: HomeViewModel by viewModel()
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
-        savedInstanceState: Bundle?
+        savedInstanceState: Bundle?,
     ): View? {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
 
-        homeViewModel.text.observe(viewLifecycleOwner) {
-            binding.textHome.text = it
-        }
+        homeViewModel.text.observe(viewLifecycleOwner) { binding.textHome.text = it }
 
         return binding.root
     }

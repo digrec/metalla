@@ -3,7 +3,6 @@ package com.digrec.metalla.core.util
 import java.util.logging.Level
 import java.util.logging.Logger
 
-
 /**
  * Kotlin [Logger] wrapper.
  *
@@ -28,9 +27,7 @@ class Klog(private val logger: Logger) {
     }
 }
 
-/**
- * Returns an instance of [Klog] with given [tag] (or a caller class name as default tag).
- */
+/** Returns an instance of [Klog] with given [tag] (or a caller class name as default tag). */
 inline fun <reified R : Any> R.logger(tag: String = this::class.java.name): Klog {
     val logger = Logger.getLogger(tag.substringBefore(delimiter = "\$Companion"))
     return Klog(logger)

@@ -19,7 +19,7 @@ This roadmap outlines the planned evolution of Metalla, from technical debt redu
 
 - [ ] **Standardize Use Cases:** Ensure all business logic is encapsulated in Use Cases.
 - [ ] **Consistent Logging:** Standardize Timber usage across all modules.
-- [ ] **Code Formatting (ktfmt):** Enforce consistent code style across the project to reduce diff noise and improve agentic readability.
+- [x] **Code Formatting (ktfmt):** Enforce consistent code style across the project to reduce diff noise and improve agentic readability.
 - [ ] **Better KDoc:** Improve documentation for core components to help agents understand intent.
 
 ## 🧪 Testing & Quality Strategy

@@ -7,6 +7,7 @@ targetSdk = "37"
 # Plugins
 agp = "9.3.2"
 kotlin = "2.4.10"
+ktfmt = "0.27.0"
 
 # Libraries
 androidx-appcompat = "1.8.0"
@@ -40,3 +41,4 @@ timber = { group = "com.jakewharton.timber", name = "timber", version.ref = "tim
 android-application = { id = "com.android.application", version.ref = "agp" }
 android-library = { id = "com.android.library", version.ref = "agp" }
 kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
+ktfmt = { id = "com.ncorti.ktfmt.gradle", version.ref = "ktfmt" }

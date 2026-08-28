@@ -8,20 +8,19 @@ import androidx.fragment.app.Fragment
 import com.digrec.metalla.databinding.FragmentSettingsBinding
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-
-/**
- * Created by Dejan Igrec
- */
+/** Created by Dejan Igrec */
 class SettingsFragment : Fragment() {
 
     private var _binding: FragmentSettingsBinding? = null
-    private val binding get() = _binding!!
+    private val binding
+        get() = _binding!!
+
     private val settingsViewModel: SettingsViewModel by viewModel()
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
-        savedInstanceState: Bundle?
+        savedInstanceState: Bundle?,
     ): View? {
         _binding = FragmentSettingsBinding.inflate(inflater, container, false)
 

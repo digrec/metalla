@@ -8,26 +8,23 @@ import androidx.fragment.app.Fragment
 import com.digrec.metalla.databinding.FragmentDashboardBinding
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-
-/**
- * Created by Dejan Igrec
- */
+/** Created by Dejan Igrec */
 class DashboardFragment : Fragment() {
 
     private var _binding: FragmentDashboardBinding? = null
-    private val binding get() = _binding!!
+    private val binding
+        get() = _binding!!
+
     private val dashboardViewModel: DashboardViewModel by viewModel()
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
-        savedInstanceState: Bundle?
+        savedInstanceState: Bundle?,
     ): View? {
         _binding = FragmentDashboardBinding.inflate(inflater, container, false)
 
-        dashboardViewModel.text.observe(viewLifecycleOwner) {
-            binding.textDashboard.text = it
-        }
+        dashboardViewModel.text.observe(viewLifecycleOwner) { binding.textDashboard.text = it }
 
         return binding.root
     }

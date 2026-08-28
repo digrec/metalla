@@ -2,7 +2,6 @@ package com.digrec.metalla.core.domain.model
 
 import java.util.Date
 
-
 /**
  * Purchase item.
  *

@@ -22,6 +22,7 @@ This document provides context and rules for AI agents contributing to Metalla. 
     - Fragments: `[Feature]Fragment`
     - UseCases: `[Action][Entity]UseCase` (e.g., `GetPortfolioItemsUseCase`)
 - **Logging:** Use `Timber`. Avoid `Log.d/e`.
+- **Formatting:** Code is strictly enforced using `ktfmt` with the `kotlinLangStyle` (4-space indent, official Kotlin conventions). Run `./gradlew ktfmtFormat` before committing.
 
 ## 🛠 Working with the Codebase
 
