@@ -18,6 +18,7 @@ Metalla is a modern Android application for tracking precious metals portfolios.
 - **Asynchronous Programming:** Coroutines & Flow
 - **State Management:** StateFlow
 - **Logging:** [Timber](https://github.com/JakeWharton/timber)
+- **Code Formatting:** [ktfmt](https://github.com/facebook/ktfmt) (Kotlinlang style)
 - **UI:** ViewBinding (Migration to Jetpack Compose planned)
 - **Navigation:** Jetpack Navigation Component
 
@@ -35,6 +36,16 @@ Metalla utilizes a consolidated single-module (`:app`) approach that strictly en
 - **JDK Version:** Java 17 or higher.
 - **Android Studio:** Ladybug or newer.
 - **Local Properties:** Ensure `local.properties` is configured if you add sensitive keys (e.g., API keys for prices).
+
+### 🎨 Code Style
+
+The project uses `ktfmt` to maintain a consistent code style (official Kotlin conventions). You can format the code by running:
+
+```bash
+./gradlew ktfmtFormat
+```
+
+Code formatting is enforced; the build will fail if the code is not properly formatted.
 
 ## 🤖 Agentic Development
 
