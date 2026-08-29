@@ -4,16 +4,16 @@ This roadmap outlines the planned evolution of Metalla, from technical debt redu
 
 ## 🛠 Technical Modernization (MAD)
 
-- [ ] **Migrate to Jetpack Compose:** Replace ViewBinding and XML layouts with declarative Compose UI.
+- [x] **Migrate to Jetpack Compose:** Replace ViewBinding and XML layouts with declarative Compose UI.
 - [x] **State Flow Migration:** Fully transition from `LiveData` to `StateFlow` for state management.
 - [x] **Architectural Consolidation:** Simplify project structure by merging `:data` and `:domain` into a single `:app` module using a package-by-feature structure.
     - `ui/`: Top-level app scaffolding (e.g. MainActivity, future Compose root, global navigation).
     - `di/`: Composition Root (Koin modules wiring the entire app).
     - `core/`: Shared components (database, repository interfaces, shared domain/data logic, shared theme/design system).
     - `features/`: Package-by-feature UI and feature-specific logic.
-- [ ] **Version Catalog Optimization:** Ensure all dependencies are correctly managed in `libs.versions.toml`.
+- [x] **Version Catalog Optimization:** Ensure all dependencies are correctly managed in `libs.versions.toml`.
 - [ ] **KSP Support:** Use KSP for any future annotation processing (e.g., Room, Hilt).
-- [ ] **Navigation Component for Compose:** Migrate to Compose Navigation.
+- [x] **Navigation Component for Compose:** Migrate to Compose Navigation (using type-safe routes).
 
 ## 🤖 Agent-Friendliness Improvements
 

@@ -1,35 +1,19 @@
 package com.digrec.metalla.ui
 
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
-import androidx.navigation.findNavController
-import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.setupActionBarWithNavController
-import androidx.navigation.ui.setupWithNavController
-import com.digrec.metalla.R
-import com.digrec.metalla.databinding.ActivityMainBinding
+import androidx.activity.ComponentActivity
+import androidx.activity.compose.setContent
+import androidx.activity.enableEdgeToEdge
+import com.digrec.metalla.core.ui.theme.MetallaTheme
 
 /** Created by Dejan Igrec */
-class MainActivity : AppCompatActivity() {
-
-    private lateinit var binding: ActivityMainBinding
+class MainActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        binding = ActivityMainBinding.inflate(layoutInflater)
-        setContentView(binding.root)
+        enableEdgeToEdge()
 
-        val navController = findNavController(R.id.nav_host_fragment)
-        val appBarConfiguration =
-            AppBarConfiguration(
-                setOf(
-                    R.id.navigation_home,
-                    R.id.navigation_dashboard,
-                    R.id.navigation_settings,
-                )
-            )
-        setupActionBarWithNavController(navController, appBarConfiguration)
-        binding.navView.setupWithNavController(navController)
+        setContent { MetallaTheme { MetallaApp() } }
     }
 }

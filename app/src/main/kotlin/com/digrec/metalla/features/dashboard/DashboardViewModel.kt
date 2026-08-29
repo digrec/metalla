@@ -8,6 +8,6 @@ import kotlinx.coroutines.flow.asStateFlow
 /** Created by Dejan Igrec */
 class DashboardViewModel : ViewModel() {
 
-    private val _text = MutableStateFlow("Dashboard Fragment")
+    private val _text = MutableStateFlow("Dashboard Screen")
     val text: StateFlow<String> = _text.asStateFlow()
 }

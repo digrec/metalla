@@ -2,7 +2,7 @@
 
 Metalla is a modern Android application for tracking precious metals portfolios. It focuses on clean architecture, modularization, and following Modern Android Development (MAD) guidelines.
 
-![App Screenshot](https://via.placeholder.com/360x640?text=Metalla+UI+Placeholder)
+![App Screenshot](https://via.placeholder.com/360x640?text=Metalla+UI+Premium+Gold)
 
 ## 🚀 Features
 
@@ -13,21 +13,22 @@ Metalla is a modern Android application for tracking precious metals portfolios.
 ## 🛠 Tech Stack
 
 - **Language:** [Kotlin](https://kotlinlang.org/)
-- **Architecture:** Clean Architecture with MVVM
+- **UI:** [Jetpack Compose](https://developer.android.com/jetpack/compose) with [Material 3](https://m3.material.io/)
+- **Navigation:** [Compose Navigation](https://developer.android.com/guide/navigation/design/type-safety) with **Type-Safe Routes**
+- **Architecture:** Clean Architecture (Domain, Data, Presentation)
 - **Dependency Injection:** [Koin](https://insert-koin.io/)
 - **Asynchronous Programming:** Coroutines & Flow
 - **State Management:** StateFlow
+- **Serialization:** [Kotlinx Serialization](https://github.com/Kotlin/kotlinx.serialization)
 - **Logging:** [Timber](https://github.com/JakeWharton/timber)
 - **Code Formatting:** [ktfmt](https://github.com/facebook/ktfmt) (Kotlinlang style)
-- **UI:** ViewBinding (Migration to Jetpack Compose planned)
-- **Navigation:** Jetpack Navigation Component
 
 ## 📂 Project Structure
 
 Metalla utilizes a consolidated single-module (`:app`) approach that strictly enforces layer separation through a package-by-feature structure:
 
-- `ui/`: Top-level app scaffolding (e.g., MainActivity, future Compose root, global navigation).
-- `features/`: Package-by-feature UI and feature-specific business logic (e.g., Dashboard, Settings).
+- `ui/`: Top-level app scaffolding (e.g., `MainActivity`, `MetallaApp` root, and type-safe navigation definitions).
+- `features/`: Package-by-feature UI and feature-specific business logic. Uses the **Stateful/Stateless Composable** pattern for optimal testability and preview performance.
 - `core/`: Shared components (database, repository interfaces, shared domain/data logic, shared theme/design system).
 - `di/`: Composition Root (Koin modules wiring the entire app together).
 
@@ -35,7 +36,7 @@ Metalla utilizes a consolidated single-module (`:app`) approach that strictly en
 
 - **JDK Version:** Java 17 or higher.
 - **Android Studio:** Ladybug or newer.
-- **Local Properties:** Ensure `local.properties` is configured if you add sensitive keys (e.g., API keys for prices).
+- **Minimum SDK:** API 24 (Android 7.0).
 
 ### 🎨 Code Style
 
@@ -49,8 +50,8 @@ Code formatting is enforced; the build will fail if the code is not properly for
 
 ## 🤖 Agentic Development
 
-This project is optimized for AI-driven development. Please refer to [AGENTS.md](AGENTS.md) for architectural guidelines and development patterns.
+This project is optimized for AI-driven development. Please refer to [AGENTS.md](AGENTS.md) for detailed architectural guidelines, development patterns, and naming conventions.
 
 ## 🗺 Roadmap
 
-See [ROADMAP.md](ROADMAP.md) for future plans and technical improvements.
+See [ROADMAP.md](ROADMAP.md) for the current development status and future implementation milestones.
