@@ -41,7 +41,14 @@ This document provides context and rules for AI agents contributing to Metalla. 
 
 - **Navigation:** Use **Type-Safe Navigation** as defined in `ui.navigation`. Define new destinations as `@Serializable` objects/classes in `MetallaDestination`.
 - **State Management:** Use `StateFlow` in ViewModels to expose UI state.
-- **Error Handling:** Use a sealed `Result<T>` wrapper (or similar) to propagate success/failure from the Data layer up to the Domain layer. Avoid throwing exceptions directly into the UI layer.
-- **Threading & Coroutines:** Never hardcode `Dispatchers.IO` or `Dispatchers.Main`. Always inject `CoroutineDispatcher` dependencies to maintain unit testability.
+- **Error Handling:** Use the sealed `MetallaResult<T>` wrapper to propagate success/failure from the Data layer up to the Domain layer. Leverage functional helpers like `map`, `onSuccess`, and `onError` for transformations.
+- **Threading & Coroutines:** Never hardcode `Dispatchers.IO` or `Dispatchers.Main`. Always inject the `DispatcherProvider` dependency (including `mainImmediate`) to maintain unit testability.
+- **Business Logic:** Encapsulate all business logic in `UseCase` or `FlowUseCase` (see `core.domain`).
 - **Model Mapping:** Maintain strict isolation between layer models. Network DTOs must be mapped to Domain Models in the Data layer, and Domain Models mapped to UI State in the Presentation layer.
 - **UI Logic:** Keep Activities lean. Most logic should reside in ViewModels or the root `MetallaApp`. Use **Slot-based APIs** for high-level UI containers (like `Scaffold` wrappers).
+
+## 🧪 Testing Guidelines
+
+- **Unit Testing:** Use `MockK` for mocking and `Turbine` for testing `Flow` and `StateFlow`.
+- **Coroutine Testing:** Use `MainDispatcherRule` in all ViewModel and UseCase tests to manage the Main dispatcher. Use `TestDispatcherProvider` to inject test dispatchers into components.
+- **Stateless UI Testing:** Test UI components using their stateless `[Feature]Content` versions to keep tests fast and isolated.

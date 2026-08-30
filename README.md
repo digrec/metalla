@@ -21,6 +21,7 @@ Metalla is a modern Android application for tracking precious metals portfolios.
 - **State Management:** StateFlow
 - **Serialization:** [Kotlinx Serialization](https://github.com/Kotlin/kotlinx.serialization)
 - **Logging:** [Timber](https://github.com/JakeWharton/timber)
+- **Testing:** [MockK](https://mockk.io/), [Turbine](https://github.com/cashapp/turbine) (Flow testing)
 - **Code Formatting:** [ktfmt](https://github.com/facebook/ktfmt) (Kotlinlang style)
 
 ## 📂 Project Structure

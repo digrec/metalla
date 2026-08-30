@@ -17,7 +17,10 @@ class App : Application() {
         startKoin {
             androidLogger(if (BuildConfig.DEBUG) Level.ERROR else Level.NONE)
             androidContext(this@App)
-            modules(Modules.viewModelModule)
+            modules(
+                Modules.coreModule,
+                Modules.viewModelModule,
+            )
         }
 
         Timber.plant(Timber.DebugTree())

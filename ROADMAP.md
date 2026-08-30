@@ -17,15 +17,15 @@ This roadmap outlines the planned evolution of Metalla, from technical debt redu
 
 ## 🤖 Agent-Friendliness Improvements
 
-- [ ] **Standardize Use Cases:** Ensure all business logic is encapsulated in Use Cases.
-- [ ] **Consistent Logging:** Standardize Timber usage across all modules.
+- [x] **Standardize Use Cases:** Ensure all business logic is encapsulated in Use Cases (see `core.domain.UseCase`).
+- [x] **Consistent Logging:** Standardize Timber usage across all modules.
 - [x] **Code Formatting (ktfmt):** Enforce consistent code style across the project to reduce diff noise and improve agentic readability.
 - [ ] **Better KDoc:** Improve documentation for core components to help agents understand intent.
 
 ## 🧪 Testing & Quality Strategy
 
-- [ ] **Unit Testing Foundations:**
-    - [ ] Target 80%+ coverage for `domain` logic.
+- [x] **Unit Testing Foundations:**
+    - [x] Target 80%+ coverage for `domain` logic (established with `MetallaResultTest` and `UseCaseTest`).
     - [ ] Target 70%+ coverage for `data` layer mapping and repositories.
 - [ ] **UI & Integration Testing:**
     - [ ] Implement Espresso tests for critical View-based flows (e.g., Home, Settings).
