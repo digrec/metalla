@@ -1,54 +1,77 @@
 # Agentic Development Guidelines
 
-This document provides context and rules for AI agents contributing to Metalla. Following these guidelines ensures consistency and high-quality code.
+Guidelines and rules for AI agents and human contributors to Metalla. Keep this file compact, high-density, and token-friendly.
 
-## 🏗 Architectural Principles
+## 🏗 Architecture & Logical Package Boundaries
 
-- **Clean Architecture:** Maintain strict separation between layers.
-    - **Physical Structure:** Physical Gradle modules are merged into a single module (`:app`), but **logical separation** of layers (Domain, Data, Presentation) must remain strictly enforced via packages.
-    - **Domain Layer:** Business logic, models, and repository interfaces. No dependencies on other layers.
-    - **Data Layer:** Implementation of repositories and data sources (Local/Remote). Depends on Domain.
-    - **Presentation Layer:** UI screens, Composables, and ViewModels. Interacts with Domain via Use Cases or Repositories.
-- **Dependency Injection:** Use [Koin](https://insert-koin.io/). Define modules in the top-level `di` package.
-- **MAD (Modern Android Development):** Use Jetpack Compose, Material 3, and Compose Navigation with Type-Safe routes.
-- **Dependencies:** Do not introduce new third-party libraries without explicit user permission. Stick to the defined tech stack.
+Metalla uses a consolidated single-module (`:app`) structure with strict logical layering:
 
-## 📝 Coding Standards
+```text
+com.digrec.metalla/
+├── core/
+│   ├── domain/        # Pure Kotlin: business logic, UseCases, repository interfaces, models
+│   ├── data/          # Room DB/DAOs, network DTOs, repository impls, model mappers
+│   ├── ui/theme/      # Signature dark theme (MetallaTheme, Color, Type)
+│   └── util/          # Shared utilities (Timber logging, dispatchers)
+├── features/[name]/   # [Feature]Screen (stateful), [Feature]Content (stateless), [Feature]ViewModel, UiState, UiAction
+├── ui/                # App shell (MainActivity, MetallaApp, MetallaNavHost, MetallaDestination)
+└── di/                # Koin modules (Modules.kt)
+```
 
-- **Kotlin First:** Use idiomatic Kotlin (e.g., `when`, `let`, `apply`, `extension functions`).
-- **Reactive Streams:** Use `StateFlow` and `SharedFlow` for state management and event propagation.
-- **Naming:**
-    - ViewModels: `[Feature]ViewModel`
-    - Stateful Screens: `[Feature]Screen` (handles DI/State collection)
-    - Stateless Content: `[Feature]Content` (pure UI for previews/testing)
-    - UseCases: `[Action][Entity]UseCase` (e.g., `GetPortfolioItemsUseCase`)
-- **Logging:** Use `Timber`. Avoid `Log.d/e`.
-- **Formatting:** Code is strictly enforced using `ktfmt` with the `kotlinLangStyle` (4-space indent, official Kotlin conventions). Run `./gradlew ktfmtFormat` before committing.
+### Layer Rules
+- **Domain Layer:** Pure Kotlin only. **Never import `android.*`** (no Android resource IDs like `drawableId`). Use `Instant` for timestamps and `BigDecimal` / integer cents for money. Use typed enums (`MetalType`, `ProductForm`) instead of raw Strings. See [GLOSSARY.md](docs/GLOSSARY.md).
+- **Data Layer:** Implements Domain repository interfaces. Network DTOs and Room Entities are private to Data and must be mapped to/from Domain models.
+- **Presentation Layer:** Interacts with Domain strictly via UseCases or Repositories. Consumes and renders Domain models.
+- **DI:** Use [Koin](https://insert-koin.io/). Register in `di/Modules.kt` (`singleOf`, `viewModelOf`).
 
-## 🛠 Working with the Codebase
+## 📝 Coding Standards & Patterns
 
-- **Finding Declarations:** Always search for existing patterns before implementing new features.
-- **Compose Previews:** 
-    - Always provide `@Preview` functions for UI components.
-    - **Stateless Pattern:** Previews must use the stateless `[Feature]Content` version of a screen to avoid DI overhead and ensure performance.
-- **Theming:** Use the centralized `MetallaTheme`. It includes a `Surface` that automatically applies background and text colors.
-- **Git & Commits:**
-    - Use **Conventional Commits** (e.g., `feat:`, `fix:`, `chore:`, `docs:`).
-    - Always include a `Co-authored-by` footer in commit messages to indicate AI assistance, using your specific agent name and email.
-      Example: `Co-authored-by: [Agent Name] <[agent@email.com]>`
+- **Kotlin First:** Idiomatic Kotlin (`when`, `let`, extensions, value classes).
+- **Unidirectional Data Flow (UDF):**
+  - **State:** Each ViewModel exposes a single immutable `StateFlow<[Feature]UiState>`.
+  - **Actions:** ViewModels receive user events via a sealed interface `[Feature]UiAction` (e.g., `fun onAction(action: HomeUiAction)`).
+- **Error Handling:** Use `MetallaResult<T>` (`Success`, `Error`, `Loading`) with functional operators (`map`, `onSuccess`, `onError`).
+- **Coroutines & Threading:** Never hardcode `Dispatchers.IO` or `Dispatchers.Main`. Always inject `DispatcherProvider`.
+- **Logging:** Use `Timber`. Strictly avoid `android.util.Log` and `java.util.logging`.
+- **Theming:** Metalla has a **single signature dark brand theme** (`MetallaTheme`). Keep UI dark-optimized and consistent.
+- **Formatting:** Enforced via `ktfmt` with `kotlinLangStyle`. Run `./gradlew ktfmtFormat` before committing.
 
-## 🚀 Preferred Patterns
+## 🎨 Compose & UI Rules
 
-- **Navigation:** Use **Type-Safe Navigation** as defined in `ui.navigation`. Define new destinations as `@Serializable` objects/classes in `MetallaDestination`.
-- **State Management:** Use `StateFlow` in ViewModels to expose UI state.
-- **Error Handling:** Use the sealed `MetallaResult<T>` wrapper to propagate success/failure from the Data layer up to the Domain layer. Leverage functional helpers like `map`, `onSuccess`, and `onError` for transformations.
-- **Threading & Coroutines:** Never hardcode `Dispatchers.IO` or `Dispatchers.Main`. Always inject the `DispatcherProvider` dependency (including `mainImmediate`) to maintain unit testability.
-- **Business Logic:** Encapsulate all business logic in `UseCase` or `FlowUseCase` (see `core.domain`).
-- **Model Mapping:** Maintain strict isolation between layer models. Network DTOs must be mapped to Domain Models in the Data layer, and Domain Models mapped to UI State in the Presentation layer.
-- **UI Logic:** Keep Activities lean. Most logic should reside in ViewModels or the root `MetallaApp`. Use **Slot-based APIs** for high-level UI containers (like `Scaffold` wrappers).
+- **Stateful / Stateless Split:**
+  - `[Feature]Screen`: Handles DI (`koinViewModel()`), lifecycle-aware state collection (`collectAsStateWithLifecycle`), and action dispatch.
+  - `[Feature]Content`: Pure, stateless UI accepting state and lambdas.
+- **Previews:** Always provide `@Preview` targeting the stateless `[Feature]Content` wrapped in `MetallaTheme`.
+- **Compose Stability:** Ensure UI state classes are `@Immutable` or `@Stable`. Avoid instantiating lambdas or objects inside composable loops.
 
 ## 🧪 Testing Guidelines
 
-- **Unit Testing:** Use `MockK` for mocking and `Turbine` for testing `Flow` and `StateFlow`.
-- **Coroutine Testing:** Use `MainDispatcherRule` in all ViewModel and UseCase tests to manage the Main dispatcher. Use `TestDispatcherProvider` to inject test dispatchers into components.
-- **Stateless UI Testing:** Test UI components using their stateless `[Feature]Content` versions to keep tests fast and isolated.
+- **Unit Tests:** MockK + Turbine + `kotlinx-coroutines-test`.
+- **Dispatchers in Tests:** Always use `MainDispatcherRule` and `TestDispatcherProvider`.
+- **Stateless UI Tests:** Test Compose UI using `createComposeRule()` against stateless `[Feature]Content`.
+- **Fakes over Mocks:** For repositories and data sources, prefer test fakes over deep mocking when practical.
+
+## 📋 Feature Implementation Recipe
+
+When implementing a feature or unit of work:
+1. **Domain:** Define pure Models, Repository interfaces, and `UseCase` / `FlowUseCase`.
+2. **Data:** Define Room Entity/DAO or Remote DTO, implement mappers, and implement Repository. Bind in Koin.
+3. **Presentation:** Define `UiState`, `UiAction`, `ViewModel`, stateless `Content`, stateful `Screen`, and `@Preview`.
+4. **Navigation:** Add type-safe destination to `MetallaDestination` and route in `MetallaNavHost`.
+5. **Verify:** Run verification commands (see below).
+
+## ⚡ Verification Commands
+
+Run these checks to verify code integrity:
+```bash
+./gradlew ktfmtCheck           # Check code formatting
+./gradlew testDebugUnitTest    # Run all unit tests
+./gradlew lintDebug            # Run Android Lint
+./gradlew check                # Comprehensive check
+```
+
+## 📦 Git Commits
+- Use **Conventional Commits** (`feat:`, `fix:`, `refactor:`, `chore:`, `docs:`).
+- Always include AI co-author footer:
+  `Co-authored-by: [Agent Name] <[agent@email.com]>`
+
