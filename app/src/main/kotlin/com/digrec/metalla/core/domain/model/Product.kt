@@ -1,6 +1,6 @@
 package com.digrec.metalla.core.domain.model
 
-import java.util.Date
+import kotlin.time.Instant
 
 /**
  * Precious metal product.
@@ -10,10 +10,10 @@ import java.util.Date
 data class Product(
     val id: Long,
     val name: String,
-    val metal: String,
-    val form: String,
-    val drawableId: Int,
+    val metal: MetalType,
+    val form: ProductForm,
     val description: String,
-    val weight: Float,
-    val creationDate: Date,
+    val weight: Double,
+    val weightUnit: WeightUnit = WeightUnit.TROY_OUNCE,
+    val creationDate: Instant,
 )

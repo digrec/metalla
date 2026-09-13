@@ -22,9 +22,9 @@ This roadmap outlines the planned evolution of Metalla, prioritizing architectur
 - [x] **TECH-1: Remove Dead Code & Fix Timber Planting**
   - Delete unused `core/util/Klog.kt` (conflicts with Timber logging standards).
   - Update `App.kt` to only plant `Timber.DebugTree()` when `BuildConfig.DEBUG` is true.
-- [ ] **TECH-2: Modern Date/Time Migration (`kotlinx-datetime`)**
+- [x] **TECH-2: Modern Date/Time Migration (`kotlinx-datetime`)**
   - Add `kotlinx-datetime` to `gradle/libs.versions.toml`.
-  - Replace `java.util.Date` across domain models (`Product`, `Item`, `Supplier`) with `kotlinx.datetime.Instant`.
+  - Replace `java.util.Date` across domain models (`Product`, `Item`, `Supplier`) with `kotlin.time.Instant` (promoted to stdlib in Kotlin 2.1+ / `kotlinx-datetime` 0.8.x).
 - [ ] **TECH-3: Gradle Quality & Release Optimization**
   - Enable and configure Android Lint in `app/build.gradle.kts` (`abortOnError = true`, `checkDependencies = true`).
   - Configure release build type with `isMinifyEnabled = true` and tuned ProGuard/R8 rules.
@@ -37,7 +37,7 @@ This roadmap outlines the planned evolution of Metalla, prioritizing architectur
 
 ## 2. 🏛 Architecture & Clean Layering (ARCH)
 
-- [ ] **ARCH-1: Domain Model Decoupling & Typification**
+- [x] **ARCH-1: Domain Model Decoupling & Typification**
   - Remove Android framework resource ID (`drawableId: Int`) from `Product.kt`; decouple domain from Android UI dependencies.
   - Eliminate primitive obsession: Introduce domain enums `MetalType` (Gold, Silver, Platinum, Palladium), `ProductForm` (Bar, Coin, Round, Grain), and `WeightUnit` (Gram, Troy Ounce, Kilogram) with conversion utilities.
   - Replace floating-point `Double` in `Item.price` with safe financial representation (e.g., `BigDecimal` or minor currency units `Long` / `Money` value class).

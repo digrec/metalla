@@ -1,6 +1,6 @@
 package com.digrec.metalla.core.domain.model
 
-import java.util.Date
+import kotlin.time.Instant
 
 /**
  * Supplier of a [Product].
@@ -15,5 +15,5 @@ data class Supplier(
     val phone: String,
     val mobilePhone: String,
     val emailAddress: String,
-    val creationDate: Date,
+    val creationDate: Instant,
 )

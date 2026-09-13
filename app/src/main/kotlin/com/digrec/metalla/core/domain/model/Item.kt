@@ -1,6 +1,7 @@
 package com.digrec.metalla.core.domain.model
 
-import java.util.Date
+import java.math.BigDecimal
+import kotlin.time.Instant
 
 /**
  * Purchase item.
@@ -11,9 +12,9 @@ data class Item(
     val id: Long,
     val product: Product,
     val supplier: Supplier,
-    val purchaseDate: Date,
-    val price: Double,
+    val purchaseDate: Instant,
+    val price: BigDecimal,
     val currency: String,
     val quantity: Int,
-    val creationDate: Date,
+    val creationDate: Instant,
 )
