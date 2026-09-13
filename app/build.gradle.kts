@@ -26,13 +26,23 @@ android {
     }
 
     buildTypes {
+        debug { versionNameSuffix = "-debug" }
         release {
-            isMinifyEnabled = false
+            isMinifyEnabled = true
+            isShrinkResources = true
+            signingConfig =
+                signingConfigs.findByName("release") ?: signingConfigs.getByName("debug")
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro",
             )
         }
+    }
+
+    lint {
+        abortOnError = true
+        checkDependencies = true
+        checkReleaseBuilds = true
     }
     buildFeatures {
         compose = true

@@ -1,21 +1,30 @@
-# Add project specific ProGuard rules here.
-# You can control the set of applied configuration files using the
-# proguardFiles setting in build.gradle.
-#
-# For more details, see
-#   http://developer.android.com/guide/developing/tools/proguard.html
+# ==============================================================================
+# Metalla Release & R8 Optimization ProGuard Rules
+# ==============================================================================
 
-# If your project uses WebView with JS, uncomment the following
-# and specify the fully qualified class name to the JavaScript interface
-# class:
-#-keepclassmembers class fqcn.of.javascript.interface.for.webview {
-#   public *;
-#}
+# ------------------------------------------------------------------------------
+# Stack Traces & Debugging
+# Preserve line numbers and source files for readable stack traces in crash reports.
+# ------------------------------------------------------------------------------
+-keepattributes SourceFile,LineNumberTable
+-renamesourcefileattribute SourceFile
 
-# Uncomment this to preserve the line number information for
-# debugging stack traces.
-#-keepattributes SourceFile,LineNumberTable
+# ------------------------------------------------------------------------------
+# Kotlin Coroutines & Flow
+# ------------------------------------------------------------------------------
+-keepclassmembers class kotlinx.coroutines.android.AndroidDispatcherFactory {
+    public <init>();
+}
 
-# If you keep the line number information, uncomment this to
-# hide the original source file name.
-#-renamesourcefileattribute SourceFile
+# ------------------------------------------------------------------------------
+# Timber Logging Optimization
+# Strip verbose and debug log calls (including tagged logging on Trees) in release builds.
+# ------------------------------------------------------------------------------
+-assumenosideeffects class timber.log.Timber {
+    public static *** v(...);
+    public static *** d(...);
+}
+-assumenosideeffects class timber.log.Timber$Tree {
+    public *** v(...);
+    public *** d(...);
+}
