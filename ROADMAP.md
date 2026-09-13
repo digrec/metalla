@@ -19,7 +19,7 @@ This roadmap outlines the planned evolution of Metalla, prioritizing architectur
 
 ## 1. 🛠 Technical & Build Foundations (TECH)
 
-- [ ] **TECH-1: Remove Dead Code & Fix Timber Planting**
+- [x] **TECH-1: Remove Dead Code & Fix Timber Planting**
   - Delete unused `core/util/Klog.kt` (conflicts with Timber logging standards).
   - Update `App.kt` to only plant `Timber.DebugTree()` when `BuildConfig.DEBUG` is true.
 - [ ] **TECH-2: Modern Date/Time Migration (`kotlinx-datetime`)**
@@ -59,7 +59,7 @@ This roadmap outlines the planned evolution of Metalla, prioritizing architectur
 
 ## 3. 🧪 Code Quality & Testing (QUALITY)
 
-- [ ] **QUALITY-1: Test Suite Cleanup & Template Removal**
+- [x] **QUALITY-1: Test Suite Cleanup & Template Removal**
   - Remove starter template tests (`ExampleUnitTest.kt`, `ExampleInstrumentedTest.kt`).
 - [ ] **QUALITY-2: Compose UI Component & Screen Testing**
   - Add Compose UI tests (`createComposeRule()`) verifying stateless `*Content` composables (`HomeContent`, `DashboardContent`, `SettingsContent`, `MetallaAppContent`).

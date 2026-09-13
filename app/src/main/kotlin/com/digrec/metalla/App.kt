@@ -23,7 +23,9 @@ class App : Application() {
             )
         }
 
-        Timber.plant(Timber.DebugTree())
+        if (BuildConfig.DEBUG) {
+            Timber.plant(Timber.DebugTree())
+        }
 
         Timber.i("=== Metalla v${BuildConfig.VERSION_NAME}+${BuildConfig.VERSION_CODE} ===")
     }
