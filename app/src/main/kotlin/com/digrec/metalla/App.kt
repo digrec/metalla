@@ -19,6 +19,7 @@ class App : Application() {
             androidContext(this@App)
             modules(
                 Modules.coreModule,
+                Modules.dataModule,
                 Modules.viewModelModule,
             )
         }

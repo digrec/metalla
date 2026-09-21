@@ -28,8 +28,8 @@ This roadmap outlines the planned evolution of Metalla, prioritizing architectur
 - [x] **TECH-3: Gradle Quality & Release Optimization**
   - Enable and configure Android Lint in `app/build.gradle.kts` (`abortOnError = true`, `checkDependencies = true`).
   - Configure release build type with `isMinifyEnabled = true` and tuned ProGuard/R8 rules.
-- [ ] **TECH-4: KSP & Room Persistence Dependencies**
-  - Add KSP plugin and Room (`room-runtime`, `room-compiler`, `room-ktx`) to `libs.versions.toml` and `app/build.gradle.kts`.
+- [x] **TECH-4: KSP & Room Persistence Dependencies**
+  - Add KSP plugin and Room (`room-runtime`, `room-compiler`) to `libs.versions.toml` and `app/build.gradle.kts`.
 - [ ] **TECH-5: Network Client Dependencies**
   - Evaluate and integrate HTTP client dependencies for future live metals price API (Ktor Client or Retrofit + OkHttp with `kotlinx.serialization`).
 
@@ -41,11 +41,11 @@ This roadmap outlines the planned evolution of Metalla, prioritizing architectur
   - Remove Android framework resource ID (`drawableId: Int`) from `Product.kt`; decouple domain from Android UI dependencies.
   - Eliminate primitive obsession: Introduce domain enums `MetalType` (Gold, Silver, Platinum, Palladium), `ProductForm` (Bar, Coin, Round, Grain), and `WeightUnit` (Gram, Troy Ounce, Kilogram) with conversion utilities.
   - Replace floating-point `Double` in `Item.price` with safe financial representation (e.g., `BigDecimal` or minor currency units `Long` / `Money` value class).
-- [ ] **ARCH-2: Data Layer Scaffolding (Offline-First SSOT)**
-  - Establish `core/data/local/`: Room Database (`MetallaDatabase`), DAOs, Entities, and TypeConverters.
-  - Establish `core/data/remote/`: DTO models, API services, network data source.
-  - Establish `core/data/repository/`: Domain repository interfaces (`ProductRepository`, `PortfolioRepository`) and implementations.
-  - Implement bidirectional mappers (`Entity <-> Domain`, `DTO <-> Domain`).
+- [x] **ARCH-2: Data Layer Scaffolding (Offline-First SSOT)**
+  - Establish `core/data/local/`: Room Database (`MetallaDatabase`), DAOs (`ProductDao`, `SupplierDao`, `ItemDao`), Entities, and TypeConverters.
+  - Establish `core/domain/repository/`: Domain repository interface (`PortfolioRepository`) with type-driven error handling (`MetallaResult`).
+  - Establish `core/data/repository/`: Offline-first repository implementation (`OfflineFirstPortfolioRepository`) backed by Room DAOs.
+  - Implement bidirectional mappers (`Entity <-> Domain`).
 - [ ] **ARCH-3: Unidirectional Data Flow (UDF) & UI State Standardization**
   - Standardize feature ViewModels to expose a single immutable `StateFlow<UiState>` (`HomeUiState`, `DashboardUiState`, `SettingsUiState`).
   - Standardize UI action dispatch using the `UiAction` pattern (e.g., `fun onAction(action: HomeAction)`).
@@ -63,9 +63,10 @@ This roadmap outlines the planned evolution of Metalla, prioritizing architectur
   - Remove starter template tests (`ExampleUnitTest.kt`, `ExampleInstrumentedTest.kt`).
 - [ ] **QUALITY-2: Compose UI Component & Screen Testing**
   - Add Compose UI tests (`createComposeRule()`) verifying stateless `*Content` composables (`HomeContent`, `DashboardContent`, `SettingsContent`, `MetallaAppContent`).
-- [ ] **QUALITY-3: Data Layer & Room In-Memory Unit Tests**
-  - Implement Room in-memory database tests for DAOs.
-  - Implement repository unit tests using MockK and test dispatchers.
+- [x] **QUALITY-3: Data Layer & Room In-Memory Unit Tests**
+  - Implement Room in-memory database tests for DAOs (`MetallaDatabaseTest`).
+  - Implement repository unit tests using MockK, Turbine, and test dispatchers (`OfflineFirstPortfolioRepositoryTest`).
+  - Implement unit tests for TypeConverters (`ConvertersTest`) and Mappers (`MappersTest`).
 - [ ] **QUALITY-4: Static Analysis (Detekt & Lint)**
   - Integrate Detekt with rules for Compose, Coroutines, and naming conventions.
 - [ ] **QUALITY-5: Local Verification Script**
@@ -81,8 +82,8 @@ This roadmap outlines the planned evolution of Metalla, prioritizing architectur
   - Logical layer boundaries, package structure, and strict import rules.
 - [x] **AGENTIC-3: Compose Hygiene & Stability Rules in `AGENTS.md`**
   - Explicit rules for `@Immutable`, `@Stable`, state hoisting, and preview conventions.
-- [ ] **AGENTIC-4: Architecture Decision Records (ADRs)**
-  - Document key architectural decisions in `docs/adr/` (Single-module structure, Koin DI, Jetpack Compose, Offline-first Room SSOT).
+- [x] **AGENTIC-4: Architecture Decision Records (ADRs)**
+  - Document key architectural decisions in `docs/adr/` (ADR-0001 Type-Driven Error Handling, ADR-0002 Offline-First Room Persistence).
 - [x] **AGENTIC-5: Precious Metals Domain Glossary**
   - Domain glossary in `docs/GLOSSARY.md` (troy ounces, fineness, spot prices, bid/ask spreads) to prevent domain mistakes.
 

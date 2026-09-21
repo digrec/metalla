@@ -30,10 +30,11 @@ com.digrec.metalla/
 - **Unidirectional Data Flow (UDF):**
   - **State:** Each ViewModel exposes a single immutable `StateFlow<[Feature]UiState>`.
   - **Actions:** ViewModels receive user events via a sealed interface `[Feature]UiAction` (e.g., `fun onAction(action: HomeUiAction)`).
-- **Error Handling:** Use `MetallaResult<T>` (`Success`, `Error`, `Loading`) with functional operators (`map`, `onSuccess`, `onError`).
+- **Type-Driven Error Handling (Errors as Values):** Avoid throwing or propagating raw exceptions across layer boundaries. Use return types (`MetallaResult<T>` for suspend operations, `Flow<MetallaResult<T>>` for reactive streams) to communicate success, failure, and loading states. Catch exceptions at the boundary (e.g., Room/Network) and wrap them into `MetallaResult.Error`. Use functional operators (`map`, `onSuccess`, `onError`).
 - **Coroutines & Threading:** Never hardcode `Dispatchers.IO` or `Dispatchers.Main`. Always inject `DispatcherProvider`.
 - **Logging:** Use `Timber`. Strictly avoid `android.util.Log` and `java.util.logging`.
 - **Theming:** Metalla has a **single signature dark brand theme** (`MetallaTheme`). Keep UI dark-optimized and consistent.
+- **Documentation & ADRs:** Proactively keep project docs (`README.md`, `ROADMAP.md`, `docs/*`) in sync with code changes. Document significant architectural decisions, cross-cutting patterns, or core dependency adoptions in `docs/adr/` and register them in `docs/adr/README.md`.
 - **Formatting:** Enforced via `ktfmt` with `kotlinLangStyle`. Run `./gradlew ktfmtFormat` before committing.
 
 ## 🎨 Compose & UI Rules
@@ -58,7 +59,8 @@ When implementing a feature or unit of work:
 2. **Data:** Define Room Entity/DAO or Remote DTO, implement mappers, and implement Repository. Bind in Koin.
 3. **Presentation:** Define `UiState`, `UiAction`, `ViewModel`, stateless `Content`, stateful `Screen`, and `@Preview`.
 4. **Navigation:** Add type-safe destination to `MetallaDestination` and route in `MetallaNavHost`.
-5. **Verify:** Run verification commands (see below).
+5. **Documentation & ADRs:** Proactively update project documentation (`README.md`, `ROADMAP.md`, `docs/*`). If introducing architectural shifts, new patterns, or core libraries, create an ADR in `docs/adr/` and register it in `docs/adr/README.md`.
+6. **Verify:** Run verification commands (see below).
 
 ## ⚡ Verification Commands
 
@@ -74,4 +76,3 @@ Run these checks to verify code integrity:
 - Use **Conventional Commits** (`feat:`, `fix:`, `refactor:`, `chore:`, `docs:`).
 - Always include AI co-author footer:
   `Co-authored-by: [Agent Name] <[agent@email.com]>`
-
